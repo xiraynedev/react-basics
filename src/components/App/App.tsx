@@ -15,6 +15,7 @@ export const App: FC = () => {
 
   const handleSendClick = () => {
     setMessages(prevState => [...prevState, textValue]);
+    setTextValue('');
   };
 
   return (
@@ -26,11 +27,12 @@ export const App: FC = () => {
           value={textValue}
           onChange={event => setTextValue(event.currentTarget.value)}
           className={`border p-4 ${lightTheme ? 'text-light-text-left' : 'text-dark-text-left'}`}/>
-        <button
-          onClick={handleSendClick}
-          className={`py-2 shadow-lg rounded-lg px-8 ${lightTheme ? 'bg-light-btn-bg text-light-btn-text-white' :
-            'bg-dark-btn-bg text-dark-btn-text'}`}>Send
-        </button>
+          <button
+            disabled={textValue ? false : true}
+            onClick={handleSendClick}
+            className={`py-2 shadow-lg rounded-lg px-8 ${lightTheme ? 'bg-light-btn-bg text-light-btn-text-white' :
+              'bg-dark-btn-bg text-dark-btn-text'}`}>Send
+          </button>
       </div>
       <div className={`w-2/5 p-4 flex flex-col gap-3 ${lightTheme ? 'bg-light-bg-right text-light-text-right' :
         'bg-dark-bg-right text-dark-text-right'}`}>
