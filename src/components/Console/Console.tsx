@@ -39,6 +39,12 @@ export const Console: FC<ConsoleProps> = ({lightTheme, messages, buttonMessages}
           }
         })
       }
+      <hr/>
+      {
+        buttonMessages?.map(message => {
+          return <p key={v4()}>{message}</p>
+        })
+      }
     </>
   );
 };
