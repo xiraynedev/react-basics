@@ -3,10 +3,11 @@ import {v4} from 'uuid';
 
 interface ConsoleProps {
   lightTheme: boolean;
+  messages?: string[];
 }
 
-export const Console: FC<ConsoleProps> = ({lightTheme}) => {
-  const [consoleMessage, setConsoleMessage] = useState<string[]>([]);
+export const Console: FC<ConsoleProps> = ({lightTheme, messages}) => {
+  const [timestamp, setTimestamp] = useState<string[]>([]);
   const dateformat = new Intl.DateTimeFormat('en-US', {
     month: '2-digit',
     day: '2-digit',
@@ -19,15 +20,22 @@ export const Console: FC<ConsoleProps> = ({lightTheme}) => {
 
   useEffect(() => {
     const datestring = `${dateformat} - ${lightTheme ? ' Theme was set to Light' : ' Theme was set to Dark'}`;
-    setConsoleMessage(prevState => [...prevState, datestring]);
+    setTimestamp(prevState => [...prevState, datestring]);
   }, [lightTheme]);
 
   return (
     <>
       {
-        consoleMessage.map(message => (
+        timestamp.map(message => (
           <p key={v4()}>{message}</p>
         ))
+      }
+      {
+        messages?.map(message => {
+          if (message) {
+            return <p key={v4()}>Message Sent: {message}</p>;
+          }
+        })
       }
     </>
   );
