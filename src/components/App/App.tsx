@@ -1,21 +1,29 @@
-import {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {Console} from '../Console/Console';
 import {ThemeButton} from '../ThemeButton/ThemeButton';
 import {v4} from 'uuid';
+import {AddButton} from '../AddButton/AddButton';
 
 export const App: FC = () => {
 
   const [lightTheme, setLightTheme] = useState(true);
-  const [messages, setMessages] = useState<string[]>([]);
+  const [textMessages, setTextMessages] = useState<string[]>([]);
   const [textValue, setTextValue] = useState('');
+  const [buttonCounter, setButtonCounter] = useState<number[]>([]);
+  const [buttonMessages, setButtonMessages] = useState<string[]>([]);
 
   const handleThemeClick = () => {
     setLightTheme(prevState => !prevState);
   };
 
   const handleSendClick = () => {
-    setMessages(prevState => [...prevState, textValue]);
+    setTextMessages(prevState => [...prevState, textValue]);
     setTextValue('');
+  };
+
+  const handleAddClick = () => {
+    setButtonCounter(prevState => [...prevState, prevState.length + 1]);
+    setButtonMessages(prevState => [...prevState, `Button ${buttonCounter} added`])
   };
 
   return (
@@ -27,16 +35,33 @@ export const App: FC = () => {
           value={textValue}
           onChange={event => setTextValue(event.currentTarget.value)}
           className={`border p-4 ${lightTheme ? 'text-light-text-left' : 'text-dark-text-left'}`}/>
-          <button
-            disabled={textValue ? false : true}
-            onClick={handleSendClick}
-            className={`py-2 shadow-lg rounded-lg px-8 ${lightTheme ? 'bg-light-btn-bg text-light-btn-text-white' :
-              'bg-dark-btn-bg text-dark-btn-text'}`}>Send
-          </button>
+        <button
+          disabled={textValue ? false : true}
+          onClick={handleSendClick}
+          className={`py-2 shadow-lg rounded-lg px-8 ${lightTheme ? 'bg-light-btn-bg text-light-btn-text-white' :
+            'bg-dark-btn-bg text-dark-btn-text'}`}>Send
+        </button>
+        <button
+          disabled={buttonCounter.length > 0 ? true : false}
+          onClick={handleAddClick}
+          className={`py-2 shadow-lg rounded-lg px-8 ${lightTheme ? 'bg-light-btn-bg text-light-btn-text-white' :
+            'bg-dark-btn-bg text-dark-btn-text'}`}
+        >Add Button
+        </button>
+        {
+          buttonCounter.map(count => (
+            <AddButton
+              key={v4()}
+              handleAddClick={handleAddClick}
+              buttonCounter={buttonCounter}
+              lightTheme={lightTheme}
+              count={count}/>
+          ))
+        }
       </div>
       <div className={`w-2/5 p-4 flex flex-col gap-3 ${lightTheme ? 'bg-light-bg-right text-light-text-right' :
         'bg-dark-bg-right text-dark-text-right'}`}>
-        <Console lightTheme={lightTheme} messages={messages}/>
+        <Console lightTheme={lightTheme} messages={textMessages} buttonMessages={buttonMessages}/>
       </div>
     </div>
   );

@@ -4,9 +4,10 @@ import {v4} from 'uuid';
 interface ConsoleProps {
   lightTheme: boolean;
   messages?: string[];
+  buttonMessages?: string[];
 }
 
-export const Console: FC<ConsoleProps> = ({lightTheme, messages}) => {
+export const Console: FC<ConsoleProps> = ({lightTheme, messages, buttonMessages}) => {
   const [timestamp, setTimestamp] = useState<string[]>([]);
   const dateformat = new Intl.DateTimeFormat('en-US', {
     month: '2-digit',
@@ -30,6 +31,7 @@ export const Console: FC<ConsoleProps> = ({lightTheme, messages}) => {
           <p key={v4()}>{message}</p>
         ))
       }
+      <hr/>
       {
         messages?.map(message => {
           if (message) {
