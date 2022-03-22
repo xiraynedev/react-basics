@@ -24,10 +24,7 @@ export const App: FC = () => {
   const handleAddClick = () => {
     setButtonCounter(prevState => [...prevState, prevState.length + 1]);
     setButtonMessages(prevState => {
-      if (buttonCounter.length < 1) {
-        return [...prevState, `Button added`];
-      }
-      return [...prevState, `Button ${buttonCounter.length} added`]
+      return [...prevState, `Button ${buttonCounter.length + 1} added`];
     });
   };
 

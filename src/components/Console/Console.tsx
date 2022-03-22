@@ -1,5 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {v4} from 'uuid';
+import {hydrateRoot} from 'react-dom/client';
 
 interface ConsoleProps {
   lightTheme: boolean;
@@ -35,14 +36,18 @@ export const Console: FC<ConsoleProps> = ({lightTheme, messages, buttonMessages}
       {
         messages?.map(message => {
           if (message) {
-            return <p key={v4()}>Message Sent: {message}</p>;
+            return (
+              <p key={v4()}>Message Sent: {message}</p>
+            );
           }
         })
       }
       <hr/>
       {
         buttonMessages?.map(message => {
-          return <p key={v4()}>{message}</p>
+          return (
+            <p key={v4()}>{message}</p>
+          );
         })
       }
     </>
