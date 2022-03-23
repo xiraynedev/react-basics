@@ -29,7 +29,7 @@ export const App: FC = () => {
   };
 
   return (
-    <div className="border flex flex-col md:flex-row h-screen w-full md:w-10/12 md:mx-auto md:m-8 gap-5">
+    <div className="border flex flex-col md:flex-row h-full w-full md:w-10/12 md:mx-auto md:m-8 gap-5">
       <div className={`w-full md:w-3/5 flex flex-col items-start p-4 ${lightTheme ? 'bg-light-bg-left text-light-text-left' :
         'bg-dark-bg-left text-dark-text-left'} gap-5`}>
         <ThemeButton lightTheme={lightTheme} handleThemeClick={handleThemeClick}/>
