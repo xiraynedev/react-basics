@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import {FC, useState} from 'react';
 import {Console} from '../Console/Console';
 import {ThemeButton} from '../ThemeButton/ThemeButton';
 import {v4} from 'uuid';
