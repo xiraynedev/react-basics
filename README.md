@@ -1,5 +1,7 @@
 # react-basics
 
+## See the project live [here](https://react-basics-v1.netlify.app/).
+
 This project demonstrates the basics of using React with TypeScript.
 The app switches between light and dark themes. Messages are sent to
 the right panel upon button presses.
