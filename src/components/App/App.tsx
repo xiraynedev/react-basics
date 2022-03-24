@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {Console} from '../Console/Console';
 import {ThemeButton} from '../ThemeButton/ThemeButton';
 import {v4} from 'uuid';
@@ -30,12 +30,13 @@ export const App: FC = () => {
 
   return (
     <div className="border flex flex-col md:flex-row h-full w-full md:w-10/12 md:mx-auto md:m-8 gap-5">
-      <div className={`w-full md:w-3/5 flex flex-col items-start p-4 ${lightTheme ? 'bg-light-bg-left text-light-text-left' :
-        'bg-dark-bg-left text-dark-text-left'} gap-5`}>
+      <div
+        className={`w-full md:w-3/5 flex flex-col items-start p-4 ${lightTheme ? 'bg-light-bg-left text-light-text-left' :
+          'bg-dark-bg-left text-dark-text-left'} gap-5`}>
         <ThemeButton lightTheme={lightTheme} handleThemeClick={handleThemeClick}/>
         <label htmlFor="textInputArea">Enter messages below:</label>
         <textarea
-          id='textInputArea'
+          id="textInputArea"
           value={textValue}
           onChange={event => setTextValue(event.currentTarget.value)}
           className={`border p-4 w-full outline-blue-200 ${lightTheme ? 'text-light-text-left' : 'text-dark-text-left'}`}/>
@@ -63,8 +64,9 @@ export const App: FC = () => {
           ))
         }
       </div>
-      <div className={`w-full md:w-2/5 p-4 flex flex-col gap-3 ${lightTheme ? 'bg-light-bg-right text-light-text-right' :
-        'bg-dark-bg-right text-dark-text-right'}`}>
+      <div
+        className={`w-full md:w-2/5 p-4 flex flex-col gap-3 ${lightTheme ? 'bg-light-bg-right text-light-text-right' :
+          'bg-dark-bg-right text-dark-text-right'}`}>
         <Console lightTheme={lightTheme} messages={textMessages} buttonMessages={buttonMessages}/>
       </div>
     </div>
