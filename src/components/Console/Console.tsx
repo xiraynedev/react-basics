@@ -1,6 +1,5 @@
-import React, {FC, useEffect, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {v4} from 'uuid';
-import {hydrateRoot} from 'react-dom/client';
 
 interface ConsoleProps {
   lightTheme: boolean;
